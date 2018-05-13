@@ -159,7 +159,7 @@ class CombinationController extends Controller
             }
 //            if ($i == 7) dd($matchs);
 
-            for ($m = 1; $m <= $countCom; $m ++ ) {
+            for ($m = 1; $m < $countCom; $m ++ ) {
                 $match = $matchs[$m];
                     if ($match == 0) {
                         $result = implode(",", $com_array).'选'.$m;
