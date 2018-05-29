@@ -199,6 +199,7 @@
                 resultsTag.innerHTML = "";
 
                 if (in_arraies.length == 0) {
+                    $('.count')[0].textContent = "";
                     return;
                 }
 
