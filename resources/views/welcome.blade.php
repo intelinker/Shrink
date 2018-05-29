@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>反缩水</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -197,7 +197,7 @@
 //        1.取出二维数组中的5位数组进行比较
                 var resultsTag = $('#results')[0];
                 resultsTag.innerHTML = "";
-                
+
                 if (in_arraies.length == 0) {
                     return;
                 }
