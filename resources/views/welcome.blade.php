@@ -195,14 +195,14 @@
                 //in_arraies 所有输入的数组的数组，二维数组，由n个5位数的数组组成
 //        $com_array 用于比较的数组，小于或等于5
 //        1.取出二维数组中的5位数组进行比较
-
+                var resultsTag = $('#results')[0];
                 resultsTag.innerHTML = "";
+                
                 if (in_arraies.length == 0) {
                     return;
                 }
 
                 var results = [];
-                var resultsTag = $('#results')[0];
 
                 // var resultsCol = $('.my-col');
                 // // console.log("results" + resultsCol);
