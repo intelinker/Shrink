@@ -47,7 +47,7 @@
         </style>
     </head>
     <body>
-        <div class="container" style="margin-top: 30px">
+        <div class="container" style="margin-top: 10px">
             <div class="row">
                 @for($i = 1; $i <= 11; $i++)
                     <div class="col" style="width: 50px; margin-top: 7px">
@@ -57,7 +57,7 @@
                 @endfor
                     <div class="col" style="width: 50px; margin-top: 7px"></div>
                     <button type="button" class="btn btn-info" style="outline: none" onclick="stringSubmit()">添加</button>
-                    <button type="button" class="btn btn-danger" style="outline: none; margin-left: 40px" onclick="computResult()">计算</button>
+                    {{--<button type="button" class="btn btn-danger" style="outline: none; margin-left: 40px" onclick="computResult()">计算</button>--}}
             </div>
 
             <div class="row flex-center">
@@ -122,6 +122,7 @@
                         newRow.appendChild(newDelete);
                         // console.log("element: " + JSON.stringify(ul.length));
                         ul.appendChild(newRow);
+                        computResult();
                     //
                     // console.log("element: " + data[0].textContent);
 
@@ -154,8 +155,9 @@
             $(".list-group").on("click", ".badge", function () {
                 var delid = $(this).attr("id");
                 var removed = $('#data-' + delid)[0];
-                alert(removed);
+                // alert(removed);
                 removed.remove();
+                computResult();
                 // alert($(this).attr("id"));
                 // $.app.product.displayProdu
                 // ct($(this).attr("id"));
@@ -193,6 +195,11 @@
                 //in_arraies 所有输入的数组的数组，二维数组，由n个5位数的数组组成
 //        $com_array 用于比较的数组，小于或等于5
 //        1.取出二维数组中的5位数组进行比较
+                if (in_arraies.length == 0) {
+                    window.location.href="";
+                    return;
+                }
+
                 var results = [];
                 var resultsTag = $('#results')[0];
 
