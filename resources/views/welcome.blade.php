@@ -195,14 +195,21 @@
                 //in_arraies 所有输入的数组的数组，二维数组，由n个5位数的数组组成
 //        $com_array 用于比较的数组，小于或等于5
 //        1.取出二维数组中的5位数组进行比较
+
+                resultsTag.innerHTML = "";
                 if (in_arraies.length == 0) {
-                    window.location.href="";
                     return;
                 }
 
                 var results = [];
                 var resultsTag = $('#results')[0];
 
+                // var resultsCol = $('.my-col');
+                // // console.log("results" + resultsCol);
+                // for (var i=0; i<resultsCol.length; i++) {
+                //     resultCol = resultsCol[i];
+                //     resultsCol.remove();
+                // }
                 var com_arraies = [];
                 var array = [1,2,3,4,5,6,7,8,9,10,11];
 //        dd($array);
@@ -265,6 +272,7 @@
 
             function appendResultTag(resultsTag, content) {
                 // console.log(resultsTag);
+
                 var resultTag = document.createElement("div");
                 resultTag.className = "my-col";
                 resultTag.textContent = content;
