@@ -121,9 +121,13 @@ class CombinationController extends Controller
         set_time_limit(0);
         $results = array();
 
-        $in_arraies = array(array(3,4,7,9,11),array(2,4,5,6,9),array(1,2,3,6,11),array(1,2,4,6,9), array(2,3,5,6,10),
-            array(2,4,5,9,10), array(1,2,6,8,10), array(4,5,6,8,11), array(1,4,8,10,11), array(2,4,7,8,10), array(2,4,6,9,10),
-            array(2,4,6,8,9), array(2,4,7,9,10,11), array(1,6,7,9,10), array(1,4,8,9,11));
+//        $in_arraies = array(array(3,4,7,9,11),array(2,4,5,6,9),array(1,2,3,6,11),array(1,2,4,6,9), array(2,3,5,6,10),
+//            array(2,4,5,9,10), array(1,2,6,8,10), array(4,5,6,8,11), array(1,4,8,10,11), array(2,4,7,8,10), array(2,4,6,9,10),
+//            array(2,4,6,8,9), array(2,4,7,9,10,11), array(1,6,7,9,10), array(1,4,8,9,11));
+
+        $in_arraies = array(array(1,4,5,6,10),array(1,3,4,8,11),array(1,4,6,8,11),array(2,6,7,8,10), array(1,5,6,10,11),
+            array(1,4,6,7,8), array(3,5,7,10,11), array(2,4,7,9,11), array(4,5,6,8,9), array(1,2,6,8,11), array(1,5,6,10,11),);
+           // array(2,4,6,8,9), array(2,4,7,9,10,11), array(1,6,7,9,10), array(1,4,8,9,11));
         $com_arraies = array();
         $array = array(1,2,3,4,5,6,7,8,9,10,11);
 //        dd($array);
@@ -175,6 +179,11 @@ class CombinationController extends Controller
         }
         return view('compare', ['results' => $results]);
 
+    }
+
+    public function input($array) {
+
+        return view('welcome', ['array' => $array]);
     }
 }
 

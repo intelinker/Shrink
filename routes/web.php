@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('input', 'CombinationController@input');
 Route::resource('combination', 'CombinationController');
 Route::get('computer', 'CombinationController@arrayCompare');
