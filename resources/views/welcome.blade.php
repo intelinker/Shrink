@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/custom.css"/>
         <link rel="stylesheet" href="/css/bootstrap.4.min.css"/>
 
         <!-- Styles -->
@@ -43,6 +44,12 @@
                 color: green;
             }
 
+            .order-bk{
+                border:2px solid orange;
+                border-radius: 20px;
+                width: 30px;
+                height: 30px;
+            }
 
         </style>
     </head>
@@ -50,21 +57,26 @@
         <div class="container" style="margin-top: 10px">
             <div class="row">
                 @for($i = 1; $i <= 11; $i++)
-                    <div class="col" style="width: 50px; margin-top: 7px">
-                        <input type="checkbox" class="custom-control-input" id="{{$i}}">
-                        <label class="custom-control-label" for="{{$i}}" style="margin-left: 10px">{{$i}}</label>
+                    <div class="col" style="margin-top: 7px; margin-left: 5px; margin-right: 8px; margin-bottom: 10px">
+                        <span class='tg-list-item'>
+                            <input class='tgl tgl-flip' id='{{$i}}' type='checkbox' hidden>
+                            <label class='tgl-btn' data-tg-off='{{$i}}' data-tg-on='{{$i}}' for='{{$i}}'></label>
+                          </span>
+                        {{--<input type="checkbox" class="custom-control-input" id="{{$i}}">--}}
+                        {{--<label class="custom-control-label" for="{{$i}}" style="margin-left: 10px">{{$i}}</label>--}}
                     </div>
                 @endfor
                     <div class="col" style="width: 50px; margin-top: 7px"></div>
-                    <button type="button" class="btn btn-info" style="outline: none" onclick="stringSubmit()">添加</button>
+                    <button type="button" class="btn btn-info" style="outline: none; margin-top: 10px" onclick="stringSubmit()">添加</button>
                     {{--<button type="button" class="btn btn-danger" style="outline: none; margin-left: 40px" onclick="computResult()">计算</button>--}}
             </div>
 
-            <div class="row flex-center">
+            <div style="margin-top: 30px; text-align: center" class="row flex-center">
 
-                <ul id="table" class="list-group" style="margin-top: 30px; width: 400px">
+                <label class="col-12" style="color: orange;"  id="total-input"></label>
+                <ul id="table" class="list-group" style="margin-top: 10px; width: 400px">
                     {{--<li id="data-1" class="list-group-item d-flex justify-content-between align-items-center">--}}
-                        {{--<h2 class="data-string">1, 2, 3, 5, 7</h2>--}}
+                        {{--<h5 class="order-bk">1</h5><h2 class="data-string">1, 2, 3, 5, 7</h2>--}}
                         {{--<h4 ><span class="badge badge-warning badge-pill" style="color: white" id="1">x</span></h4>--}}
                     {{--</li>--}}
                 </ul>
@@ -83,7 +95,7 @@
         <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
         <script type="text/javascript">
             function stringSubmit() {
-                var checks = $('.custom-control-input');
+                var checks = $('.tgl');
                 var checksCount = 0;
                 var selectString = '';
                 // console.log("element: " + checks);
@@ -103,9 +115,13 @@
                         var data = $('.data-string');
                         var ul = $('.list-group')[0];
 
+                        var idNumber = data.length + 1;
                         var newRow = document.createElement("li");
-                        newRow.id = "data-" + (data.length + 1)
+                        newRow.id = "data-" + idNumber;
                         newRow.className = "list-group-item d-flex justify-content-between align-items-center";
+                        var order = document.createElement("h4");
+                        order.textContent = idNumber;
+                        order.className = "order-bk";
                         var newValue = document.createElement(("h2"));
                         newValue.textContent = selectString;
                         newValue.className = "data-string";
@@ -118,6 +134,7 @@
                         newSpan.id = (data.length + 1);
                         newSpan.className = "badge badge-warning badge-pill";
                         newDelete.appendChild(newSpan);
+                        newRow.appendChild(order);
                         newRow.appendChild(newValue);
                         newRow.appendChild(newDelete);
                         // console.log("element: " + JSON.stringify(ul.length));
@@ -164,6 +181,7 @@
             });
 
             function computResult() {
+
                 // var a = [1,2,3,4,5,6,7,8,9,10,11];
                 // console.log(JSON.stringify(combination(a, 5)));
                 var data = $('.data-string');
@@ -198,10 +216,15 @@
                 var resultsTag = $('#results')[0];
                 resultsTag.innerHTML = "";
 
-                if (in_arraies.length == 0) {
+                var countInas = in_arraies.length;
+                var totalInput = $('#total-input')[0];
+                if (countInas == 0) {
                     $('.count')[0].textContent = "";
+                    totalInput.textContent = "";
                     return;
                 }
+
+                totalInput.textContent = "当前共输入：" + countInas + "条";
 
                 var results = [];
 
@@ -219,7 +242,6 @@
                     com_arraies = com_arraies.concat(combination(array, i));
                 }
 
-                var countInas = in_arraies.length;
                 for (var i = 0; i < com_arraies.length; i ++) {
                     var com_array = com_arraies[i];
                     var countCom = com_array.length;
